@@ -1,0 +1,14 @@
+input {
+	background-color: #FFFFCC;
+}
+
+#boldinput {
+	font-weight: bold;
+}
+
+div {
+	border: 2px dotted black;
+	padding: 20px;
+	display: inline-block;
+}
+

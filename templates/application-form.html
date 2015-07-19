@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" href="../static/style.css">
+	<title>Application form</title>
+</head>
+<body>
+	<h3>Job Application Form</h3>
+	<div>
+	<p>Please fill out the following application form.</p>
+    <form action="/application" method="post">
+	    <label>First Name:
+	        <input type="text" name="firstname">
+	    </label>
+	    <br>
+	    <label>Last Name:
+	        <input type="text" name="lastname" id="boldinput">
+	    </label>
+	    <br>
+	    <label>Salary Requirement (please enter a number):
+	        <input type="text" name="salary">
+	    </label>
+	    <br>Position (please select the position you like to apply):
+	    <br>
+	    <select name="position">
+	    	<option value="default">----------</option>
+	    	<option value="Software Engineer">Software Engineer</option>
+	    	<option value="QA Engineer">QA Engineer</option>
+	    	<option value="Product Manager">Product Manager</option>
+	    </select>
+	    <br>
+	    <br>
+	    <input type="submit">
+    </form>
+</div>
+</body>
+</html>
