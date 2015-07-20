@@ -546,12 +546,15 @@ $("img").on('dblclick', change_img)
   }
 
   function fivePrimes() {
-    var result = []
     var newPrime = 2
-    for (var i = 0; i < 5; i++) {     
-      $("div#prime-box-area").append(("div#prime-box-area").addClass("prime-box").html(newPrime))
-      result.push(newPrime)
-      newPrime = nextPrime(newPrime)
+    for (var i = 0; i < 5; i++) {
+      var color_idx = Math.floor(Math.random() * PRIME_COLORS.length);
+      var color = PRIME_COLORS[color_idx];
+      console.log(color);
+      $("div#prime-box-area").append("<div class=\"prime-box\" style=\"background-color:" + color +"\">" + newPrime + "</div>");
+      PRIME_COLORS.splice(color_idx, 1);
+      console.log(PRIME_COLORS)
+      newPrime = nextPrime(newPrime);
     }
 
   }
