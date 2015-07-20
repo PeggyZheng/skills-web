@@ -97,7 +97,14 @@
 </fieldset>
 
 <script>
-  // code here for above problem
+
+// var button = document.getElementById('popup-alert-button');
+// function alertClick() {
+//   alert("here is the popup!");
+// }
+// button.addEventListener('click', alertClick);
+var button = document.getElementById("popup-alert-button");
+button.addEventListener('click', function() {alert("here is the popup!")});
 </script>
 
 
@@ -116,6 +123,12 @@
 
 <script>
   // code here for above-problem
+  var text = document.getElementById("message-to-change");
+  var button = document.getElementById("change-hello-to-goodbye-button");
+  function change_text() {
+    text.innerText = "goodbye";
+  }
+  button.addEventListener('click', change_text);
 </script>
 
 <div class="hint">
@@ -145,6 +158,12 @@
 
 <script>
   // code here for above problem
+  var form = document.getElementById("prevent-form-submission-form");
+  function flakysubmit(evt) {
+    alert("I don't feel like submitting");
+    evt.preventDefault();
+  }
+  form.addEventListener('submit', flakysubmit);
 </script>
 
 <div class="hint">
@@ -173,23 +192,27 @@
   <input type="button" id="reverse-string-button" value="!nottuB">
 </fieldset>
 
-<script>
-//  Here's a stub of a function you can use!
 
-//  function reverseString() {
-//    var msg = "Porcupines are cute";
-//
-//    // do some stuff here to reverse that string into a new variable
-//    var newMsg = "This should be the reversed string";
-//
-//    alert(newMsg);
-//  }
+<script>
+ // Here's a stub of a function you can use!
+
+ function reverseString() {
+   var msg = "Porcupines are cute";
+
+   // do some stuff here to reverse that string into a new variable
+   var newMsg = "";
+   for (var idx = (msg.length - 1); idx >= 0; idx--) {
+    newMsg += msg[idx];
+   }
+
+   alert(newMsg);
+ }
 
 // Here's a stub of event stuff you could use
-//
 
-//  var button = document.getElementById('reverse-string-button');
-//  button.addEventListener('click', reverseString);
+
+ var button = document.getElementById('reverse-string-button');
+ button.addEventListener('click', reverseString);
 </script>
 
 
@@ -211,9 +234,10 @@
 <fieldset>
   <input type="button" class="tricky-to-find" value="Pop-Up Please!">
 </fieldset>
-
+<script src="http://code.jquery.com/jquery.js"></script>
 <script>
   // code here for above problem
+  $(".tricky-to-find").on('click', function() {alert("here is the popup!");});
 </script>
 
 <div class="hint">
@@ -241,6 +265,10 @@
 
 <script>
   // put your code here
+  function change_img() {
+  $("img#kittenz-rule").attr("src", "http://www.doglistener.co.uk/sites/default/files/Crying%20Sad%20Puppy.jpg");
+}
+$("img").on('dblclick', change_img)
 </script>
 
 <div class="hint">
@@ -274,6 +302,16 @@
 
 <script>
   // put your code here
+  function image_fade_in() {
+
+    $("img").fadeIn("slow");
+  }
+  function timer() {
+    setTimeout(image_fade_in, 1000);
+  }
+  $("#make-a-porcupine").on('click', timer);
+
+
 </script>
 
 <div class="hint">
@@ -306,6 +344,14 @@
 
 <script>
   // put your code here
+  function show_agreement(evt) {
+    var answer = $("#favorite-food-input").val();
+    console.log('answer')
+    $("#agreeable-text").html("I like " + answer + ", too.");
+    evt.preventDefault();
+  }
+  $("form").on('submit', show_agreement);
+
 </script>
 
 <div class="hint">
@@ -352,6 +398,27 @@
 
 <script>
   // put your code here
+
+  function generateMyNumber() {
+    var myNumber = Math.floor(Math.random() * 100);
+    console.log(myNumber)
+    var guess = undefined;
+    guess = parseInt(prompt("please enter your guess"));
+    while (myNumber !== guess) {
+      if (guess < myNumber) {
+      guess = parseInt(prompt("Too low! Please enter another guess"));
+    } else if (guess > myNumber) {
+      guess = parseInt(prompt("Too high! Please enter another guess"));
+    } 
+      
+    }
+    alert("Congrats! that's the correct number");
+  }
+
+
+  $("#play-guessing-game").on('click', generateMyNumber)
+
+
 </script>
 
 <div class="hint">
@@ -392,6 +459,32 @@
 
 <script>
   // put your code here
+  var myNumber = undefined
+  function generateMyNumber() {
+    var myNumber = Math.floor(Math.random() * 100);
+    $("#play-guessing-game").attr("disabled", true);  
+    $("#number-guessed").attr("disabled", false);
+    $("#try-this-number").attr("disabled", false);
+  }
+  function evaluateGuess(evt) {
+    var guess = $("#number-guessed").val();
+    while (myNumber !== guess) {
+      if (guess < myNumber) {
+      $("#number-guessing-msg").html("Too low! Please enter another guess");
+    } else if (guess > myNumber) {
+      $("#number-guessing-msg").html("Too high! Please enter another guess");
+    } 
+    
+      
+    }
+    $("#number-guessing-msg").html("Congrats! You guessed it right");
+    $("#play-guessing-game").attr("disabled", false);
+    evt.preventDefault()
+  }
+
+  $("#play-guessing-game-2").on('click', generateMyNumber)
+  $("#guessing-game-2-form").on('submit', evaluateGuess)
+
 </script>
 
 
