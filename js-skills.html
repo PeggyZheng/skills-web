@@ -459,31 +459,31 @@ $("img").on('dblclick', change_img)
 
 <script>
   // put your code here
-  var myNumber = undefined
+  var myNumber
   function generateMyNumber() {
-    var myNumber = Math.floor(Math.random() * 100);
-    $("#play-guessing-game").attr("disabled", true);  
+    myNumber = Math.floor(Math.random() * 100);
+    $("#play-guessing-game-2").attr("disabled", true);  
     $("#number-guessed").attr("disabled", false);
     $("#try-this-number").attr("disabled", false);
-  }
-  function evaluateGuess(evt) {
-    var guess = $("#number-guessed").val();
-    while (myNumber !== guess) {
-      if (guess < myNumber) {
-      $("#number-guessing-msg").html("Too low! Please enter another guess");
-    } else if (guess > myNumber) {
-      $("#number-guessing-msg").html("Too high! Please enter another guess");
-    } 
-    
-      
-    }
-    $("#number-guessing-msg").html("Congrats! You guessed it right");
-    $("#play-guessing-game").attr("disabled", false);
-    evt.preventDefault()
+    console.log(myNumber);
+    return myNumber;
   }
 
-  $("#play-guessing-game-2").on('click', generateMyNumber)
-  $("#guessing-game-2-form").on('submit', evaluateGuess)
+  function evaluateGuess(evt) {
+    var guess = $("#number-guessed").val();
+      if (guess < myNumber) {
+      $("div#number-guessing-msg").html("Too low! Please enter another guess");
+    } else if (guess > myNumber) {
+      $("div#number-guessing-msg").html("Too high! Please enter another guess");
+    } else {
+      $("div#number-guessing-msg").html("Congrats! You guessed it right");
+      $("#play-guessing-game-2").attr("disabled", false);
+    }
+    evt.preventDefault()   
+    }
+
+  $("#play-guessing-game-2").on('click', generateMyNumber);
+  $("#guessing-game-2-form").on('submit', evaluateGuess);
 
 </script>
 
@@ -522,6 +522,42 @@ $("img").on('dblclick', change_img)
     var PRIME_COLORS = ['orange', 'midnightblue', 'darkgoldenrod', 'green', 'purple'];
 
   // put the rest of your code here
+  function isPrime(n) {
+    if (n === 1) {
+      return false;
+    } else if (n === 2) {
+      return true;
+    } else { 
+      for (var i = 2; i < n; i++) {
+      if (n % i == 0) {
+        return false;
+      }
+    } return true;  
+  } 
+}
+  
+
+  function nextPrime(m) {
+    var num = m + 1;
+    while (isPrime(num) === false) {
+      num += 1;
+    }
+    return num ;
+  }
+
+  function fivePrimes() {
+    var result = []
+    var newPrime = 2
+    for (var i = 0; i < 5; i++) {     
+      $("div#prime-box-area").append(("div#prime-box-area").addClass("prime-box").html(newPrime))
+      result.push(newPrime)
+      newPrime = nextPrime(newPrime)
+    }
+
+  }
+
+$("#make-prime-boxes").on('click', fivePrimes)
+
 </script>
 
 
